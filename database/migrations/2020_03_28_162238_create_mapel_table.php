@@ -17,6 +17,7 @@ class CreateMapelTable extends Migration
             $table->bigIncrements('id');
             $table->string('kode');
             $table->string('nama');
+            $table->string('teacher_id');
             $table->timestamps();
         });
     }

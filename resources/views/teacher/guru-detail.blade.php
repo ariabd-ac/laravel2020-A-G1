@@ -20,6 +20,10 @@
 
                         <h6 class="card-subtitle">{{ $t['kodeguru'] }}</h6>
 
+                        @foreach ($t->mapel as $m)
+                            <h6 class="card-subtitle">{{$m->nama}}</h6>
+                            @endforeach
+
                         
 
 
