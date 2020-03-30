@@ -15,7 +15,10 @@ class MapelController extends Controller
     public function index()
     {
         //
-        return \view('mapel.index');
+        $mapel = Mapel::all();
+        return view('mapel.index', \compact('mapel'));
+        // return \view('teacher.index');
+        
     }
 
     /**
@@ -26,6 +29,7 @@ class MapelController extends Controller
     public function create()
     {
         //
+        return view ('mapel.create');
     }
 
     /**
@@ -37,6 +41,14 @@ class MapelController extends Controller
     public function store(Request $request)
     {
         //
+
+        $mapel = Mapel::create([
+            'kode' => $request->kode,
+            'nama' => $request->nama,
+            'teacher_id' => $request->teacher_id
+        ]);
+
+       return redirect('mapel')->with('status', 'Berhasil di add');
     }
 
     /**
@@ -48,6 +60,7 @@ class MapelController extends Controller
     public function show(Mapel $mapel)
     {
         //
+       return view('mapel.show',compact('mapel'));
     }
 
     /**
@@ -59,6 +72,7 @@ class MapelController extends Controller
     public function edit(Mapel $mapel)
     {
         //
+        return \view('mapel.edit', compact('mapel'));
     }
 
     /**
@@ -71,6 +85,13 @@ class MapelController extends Controller
     public function update(Request $request, Mapel $mapel)
     {
         //
+            Mapel::where('id', $mapel->id)->update([
+            'kode' => $request->kode,
+            'nama' => $request->nama,
+            'teacher_id' => $request->teacher_id
+
+            ]);
+            return redirect('mapel')->with('status', 'Berhasil di add');
     }
 
     /**
@@ -79,8 +100,11 @@ class MapelController extends Controller
      * @param  \App\Mapel  $mapel
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Mapel $mapel)
+    public function destroy($id)
     {
         //
+        $mapel = Mapel::findOrFail($id);
+        $mapel->delete();
+        return redirect()->route('mapel.index')->with('message', 'Data anda telah dihapus!');
     }
 }

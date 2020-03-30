@@ -39,7 +39,7 @@
 
                             <th>No. Induk Guru</th>
 
-                            <th>Mata Pelajaran</th>
+                            {{-- <th>Mata Pelajaran</th> --}}
 
                             <th>Phone</th>
 
@@ -65,9 +65,9 @@
                             <td>{{ $teacher->kodeguru }}</td>
                             <td>{{ $teacher->nama }}</td>
                             <td>{{ $teacher->nig }}</td>
-                            @foreach ($teacher->mapel as $m)
+                            {{-- @foreach ($teacher->mapel as $m)
                             <td>{{$m->nama}}</td>
-                            @endforeach
+                            @endforeach --}}
                             <td>{{ $teacher->phone }}</td>
                             <td>{{ $teacher->alamat }}</td>
                             <td>{{ $teacher->ttl }}</td>
