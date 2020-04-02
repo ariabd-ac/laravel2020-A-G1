@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Mapel;
 use App\Student;
 use Illuminate\Http\Request;
 

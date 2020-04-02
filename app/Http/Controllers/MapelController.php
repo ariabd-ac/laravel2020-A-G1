@@ -90,6 +90,7 @@ class MapelController extends Controller
             'nama' => $request->nama,
             'teacher_id' => $request->teacher_id
 
+
             ]);
             return redirect('mapel')->with('status', 'Berhasil di add');
     }

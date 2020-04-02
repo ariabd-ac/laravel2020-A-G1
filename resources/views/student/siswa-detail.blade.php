@@ -2,9 +2,7 @@
 
 @section('content')
     <div class="row">
-        <div class="col-md-4"></div>
         <div class="col-md-4">
-
             <div class="card">
 
                 @forelse ($students as $t)
@@ -19,9 +17,6 @@
                         <h6 class="card-subtitle">{{ $t['nis'] }}</h6>
 
                         <h6 class="card-subtitle">{{ $t['kelas'] }} {{ $t['jurusan'] }}</h6>
-
-                        
-
 
                     </center>
 
@@ -66,8 +61,50 @@
                           <h3 colspan="3">Tidak dapat menampilkan detail data</h3>
                 @endforelse
             </div>
+        </div>
+        <div class="col-md-8">
+            @foreach ($students as $t)
+                
+            
+            <div class="card">
+                <div class="card-body">
+                <h5>Mata pelajaran <br>{{$t['nama']}}</h5>
+                    <div class="table-responsive">
+                        <table class="table color-table warning-table">
+                         <thead>
+
+                        <tr>
+
+                            <th>#</th>
+
+                            <th>Kode Mapel</th>
+
+                            <th>Nama Mapel</th>
+                        </tr>
+
+                        </thead>
+                         @php
+                        $i=1
+                        @endphp
+                        @foreach ($t->mapel as $m)
+                            
+                        <tbody>
+                            <tr>
+                                <td>{{$i++}}</td>
+                            <td>{{$m->kode}}</td>
+                            <td>{{$m->nama}}</td>
+                            </tr>
+                           
+                        </tbody>
+                        
+                    @endforeach
+                        </table>
+                    </div>
+                </div>
+            </div>
+            @endforeach
 
         </div>
-        <div class="col-md-4"></div>
+ 
     </div>
 @endsection
