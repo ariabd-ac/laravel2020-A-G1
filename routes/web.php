@@ -12,9 +12,13 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
 });
 
+Route::get('dashboard', 'DashbardController@index');
+
+Route::get('/login', 'AuthController@login');
+Route::post('/postlogin', 'AuthController@postlogin');
 
 Route::resource('guru', 'TeachersController');
 Route::get('admin', 'TeachersController@admin');

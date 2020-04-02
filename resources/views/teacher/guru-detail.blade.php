@@ -2,7 +2,6 @@
 
 @section('content')
     <div class="row">
-        <div class="col-md-4"></div>
         <div class="col-md-4">
 
             <div class="card">
@@ -20,9 +19,9 @@
 
                         <h6 class="card-subtitle">{{ $t['kodeguru'] }}</h6>
 
-                        @foreach ($t->mapel as $m)
+                        {{-- @foreach ($t->mapel as $m)
                             <h6 class="card-subtitle">{{$m->nama}}</h6>
-                            @endforeach
+                            @endforeach --}}
 
                         
 
@@ -72,6 +71,90 @@
             </div>
 
         </div>
-        <div class="col-md-4"></div>
+        <div class="col-md-8">
+            @foreach ($teachers as $p)
+
+
+            <div class="card">
+                <div class="card-body">
+
+                    <form class="form-horizontal form-material">
+
+                        <div class="form-group">
+
+                            <label class="col-md-12">Nama Guru</label>
+
+                            <div class="col-md-12">
+
+                            <h5>{{$p['nama']}}</h5>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label class="col-md-12">Phone</label>
+
+                            <div class="col-md-12">
+
+                            <h5>{{$p['phone']}}</h5>
+
+                            </div>
+
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-12">Kode Guru</label>
+
+                            <div class="col-md-12">
+
+                            <h5>{{$p['kodeguru']}}</h5>
+
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="table-responsive">
+                                <table class="table color-table warning-table">
+                                    <thead>
+
+                                        <tr>
+
+                                            <th>#</th>
+
+                                            <th>Kode Mapel</th>
+
+                                            <th>Nama Mapel</th>
+
+                                        </tr>
+                                    </thead>
+                                        @php
+                                            $i=1
+                                        @endphp
+                                        @foreach ($p->mapel as $mp)
+
+
+                                    <tbody>
+                                        <tr>
+                                        <td>{{$i++}}</td>
+                                        <td>{{$mp['kode']}}</td>
+                                        <td>{{$mp['nama']}}</td>
+                                        </tr>
+                                    </tbody>
+                                       @endforeach
+                                </table>
+                            </div>
+                        </div>
+
+
+
+                    </form>
+
+                </div>
+            </div>
+            @endforeach
+        </div>
+        </div>
     </div>
 @endsection
