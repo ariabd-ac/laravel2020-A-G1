@@ -12,15 +12,19 @@
 */
 
 Route::get('/', function () {
-    return view('home');
+    return view('welcome');
 });
 
-Route::get('dashboard', 'DashbardController@index');
+// Route::get('dashboard', 'DashbardController@index');
 
-Route::get('/login', 'AuthController@login');
-Route::post('/postlogin', 'AuthController@postlogin');
+// Route::get('/login', 'AuthController@login');
+// Route::post('/postlogin', 'AuthController@postlogin');
 
 Route::resource('guru', 'TeachersController');
 Route::get('admin', 'TeachersController@admin');
 Route::resource('siswa', 'StudentsController');
 Route::resource('mapel', 'MapelController');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
