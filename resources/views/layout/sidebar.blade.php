@@ -22,14 +22,22 @@
 
                     <div class="profile-text">
 
-                        <h5>Markarn Doe</h5>
+                        <h5>{{ Auth::user()->name }}</h5>
 
                         <a href="#" class="dropdown-toggle u-dropdown" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true"><i class="mdi mdi-settings"></i></a>
 
                         <a href="app-email.html" class="" data-toggle="tooltip" title="Email"><i class="mdi mdi-gmail"></i></a>
 
-                        <a href="pages-login.html" class="" data-toggle="tooltip" title="Logout"><i class="mdi mdi-power"></i></a>
+                        <div>
 
+                            <a href="{{ route('logout') }}" class="" data-toggle="tooltip" title="Logout" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                              {{ __('Logout') }}
+                            </a>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        @csrf
+                            </form>
+
+                        </div>
 
                     </div>
 

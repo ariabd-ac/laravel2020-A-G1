@@ -21,10 +21,10 @@ Route::get('/', function () {
 // Route::post('/postlogin', 'AuthController@postlogin');
 
 Route::resource('guru', 'TeachersController');
-Route::get('admin', 'TeachersController@admin');
+// Route::get('admin', 'TeachersController@admin');
 Route::resource('siswa', 'StudentsController');
 Route::resource('mapel', 'MapelController');
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/admin', 'HomeController@index')->name('home');
