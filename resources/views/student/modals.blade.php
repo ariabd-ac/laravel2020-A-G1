@@ -166,45 +166,241 @@
 </div>
 
 <script>
-    $('.tambahModal').on('click', function(){
-        $('#tambahForm')[0].reset();
+  
+  $(function () {
+    
+    $.ajaxSetup({
+      headers: {
+          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      }
     });
-    $('.table tbody').on('click', '.editModal', function(){
-        $('#editForm')[0].reset();
-        var currow = $(this).closest('tr');
-        var col2 = currow.find('td:eq(1)').text();
-        var col3 = currow.find('td:eq(2)').text();
-        var col4 = currow.find('td:eq(3)').text();
-        var col5 = currow.find('td:eq(4)').text();
-        var col6 = currow.find('td:eq(5)').text();
-        var col7 = currow.find('td:eq(6)').text();
-        var col8 = currow.find('td:eq(7)').text();
-        var col9 = currow.find('td:eq(9)').text();
-        var id = $(this).data('id');
-        $('input[name$="nama"]').val(col2);
-        $('input[name$="nis"]').val(col3);
-        $('input[name$="ttl"]').val(col4);
-        $('input[name$="alamat"]').val(col5);
-        $('input[name$="jk"]').val(col6);        
-        $('input[name$="phone"]').val(col7);
-        $('input[name$="kelas"]').val(col8);
-        $('input[name$="jurusan"]').val(col9);
-        
-        var url = '{{ route("siswa.update", ":id") }}';
-        url = url.replace(':id', id);
-        $('#editForm').attr('action' , url);
-        $('#editModal').modal();
+
+    // View data with yajra datatables 
+
+    var table = $('#datatable').DataTable({
+
+    processing: true,
+    serverSide: true,
+    ajax: "{{ route('siswa.index') }}",
+
+    columns: [
+
+        {data: 'DT_RowIndex', name: 'DT_RowIndex'},
+        {data: 'nama', name: 'nama'},
+        {data: 'nis', name: 'nis'},
+        {data: 'ttl', name: 'ttl'},
+        {data: 'alamat', name: 'alamat'},
+        {data: 'jk', name: 'jk'},
+        {data: 'phone', name: 'phone'},
+        {data: 'kelas', name: 'kelas'},
+        {data: 'jurusan', name: 'jurusan'},
+        {data: 'action', name: 'action', orderable: false, searchable: false},
+    ]
+    })
+    ;
+
+     // Save Button in modal dialog
+     $('#storeBtn').click(function (e) {
+        e.preventDefault();
+        var frm = $('#tambahForm');
+        $('.errorNama').hide();
+        $('.errorNis').hide();
+        $('.errorTtl').hide();
+        $('.errorAlamat').hide();
+        $('.errorJk').hide();
+        $('.errorPhone').hide();
+        $('.errorKelas').hide();
+        $('.errorJurusan').hide();
+        $(this).html('Sending..');
+
+        $.ajax({
+          data: frm.serialize(),
+          url: "{{ route('siswa.store') }}",
+          type: "POST",
+          dataType: 'json',
+          success: function (data) {
+            if (data.errors) {
+                if (data.errors.nama) {
+                  $('.errorNama').show();
+                  $('.errorNama').text(data.errors.nama);
+                }
+                if (data.errors.nis) {
+                  $('.errorNis').show();
+                  $('.errorNis').text(data.errors.nis);
+                }
+                if (data.errors.ttl) {
+                  $('.errorTtl').show();
+                  $('.errorTtl').text(data.errors.ttl);
+                }
+                if (data.errors.alamat) {
+                  $('.errorAlamat').show();
+                  $('.errorAlamat').text(data.errors.alamat);
+                }
+                if (data.errors.jk) {
+                  $('.errorJk').show();
+                  $('.errorJk').text(data.errors.jk);
+                }
+                if (data.errors.phone) {
+                  $('.errorPhone').show();
+                  $('.errorPhone').text(data.errors.phone);
+                }
+                if (data.errors.kelas) {
+                  $('.errorKelas').show();
+                  $('.errorKelas').text(data.errors.kelas);
+                }
+                if (data.errors.jurusan) {
+                  $('.errorJurusan').show();
+                  $('.errorJurusan').text(data.errors.jurusan);
+                }
+           }else {
+              $('#tambahModal').modal('hide');
+              frm.trigger("reset");
+              table.draw();
+              swal('success!','Successfully Added','success');
+            }
+            $('#storeBtn').html('Tambah');
+          },
+          error: function (data) {
+              console.log('Error:', data);
+              $('#storeBtn').html('Tambah');
+          }
+      });
+    });
+
+     // Edit button to show modal dialog
+     $('#table').on('click','.editBtn[data-id]',function(e){
+        e.preventDefault();
+        var url = $(this).data('id');
+        $.ajax({
+            url : url,
+            type : 'GET',
+            datatype : 'json',
+            success:function(data){
+                $('#edit_id').val(data.id);
+                $('#edit_nama').val(data.nama);
+                $('#edit_nis').val(data.nis);
+                $('#edit_ttl').val(data.ttl);
+                $('#edit_alamat').val(data.alamat);
+                $('#edit_jk').val(data.jk);
+                $('#edit_phone').val(data.phone);
+                $('#edit_kelas').val(data.kelas);
+                $('#edit_jurusan').val(data.jurusan);
+                $('.errorNama').hide();
+                $('.errorNis').hide();
+                $('.errorTtl').hide();
+                $('.errorAlamat').hide();
+                $('.errorJk').hide();
+                $('.errorPhone').hide();
+                $('.errorKelas').hide();
+                $('.errorJurusan').hide();
+                $('#editModal').modal('show');
+            }
+        });
     });
 
 
-     $('.table tbody').on('click', '.hapusModal', function(){
-      var id = $(this).data('id');
-      var url = '{{ route("siswa.destroy", ":id") }}';
-      url = url.replace(':id', id);
-      $('#hapusForm').attr('action' , url);
-      $('#confirmHapusModal').modal("show");
+     // Update button in modal dialog
+     $('#updateBtn').click(function(e){
+        e.preventDefault();
+        $('.errorNama').hide();
+        $('.errorNis').hide();
+        $('.errorTtl').hide();
+        $('.errorAlamat').hide();
+        $('.errorJk').hide();
+        $('.errorPhone').hide();
+        $('.errorKelas').hide();
+        $('.errorJurusan').hide();
+        var url = "/siswa/"+$('#edit_id').val();
+        console.log(url);
+        var frm = $('#editForm');
+
+        $.ajax({
+            data : frm.serialize(),
+            type :'PUT',
+            url : url,
+            dataType : 'json',
+            success:function(data){
+              if (data.errors) {
+                if (data.errors.nama) {
+                  $('.errorNama').show();
+                  $('.errorNama').text(data.errors.nama);
+                }
+                if (data.errors.nis) {
+                  $('.errorNis').show();
+                  $('.errorNis').text(data.errors.nis);
+                }
+                if (data.errors.ttl) {
+                  $('.errorTtl').show();
+                  $('.errorTtl').text(data.errors.ttl);
+                }
+                if (data.errors.alamat) {
+                  $('.errorAlamat').show();
+                  $('.errorAlamat').text(data.errors.alamat);
+                }
+                 
+                if (data.errors.jk) {
+                  $('.errorJk').show();
+                  $('.errorJk').text(data.errors.jk);
+                }
+                if (data.errors.phone) {
+                  $('.errorPhone').show();
+                  $('.errorPhone').text(data.errors.phone);
+                }
+               
+                if (data.errors.kelas) {
+                  $('.errorKelas').show();
+                  $('.errorKelas').text(data.errors.kelas);
+                }
+                if (data.errors.jurusan) {
+                  $('.errorJurusan').show();
+                  $('.errorJurusan').text(data.errors.jurusan);
+                }
+
+              }else {
+                $('#editModal').modal('hide');
+                frm.trigger('reset');
+                swal('Success!','Data Updated Successfully','success');
+                table.ajax.reload(null,false);
+              }
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+              alert('Please Reload to read Ajax');
+            }
+        });
     });
+
+    $('#table').on('click','.deleteBtn[data-id]',function(e){
+        e.preventDefault();
+        var url = $(this).data('id');
+        console.log(url);
+        swal({
+           title: "Are you sure want to remove this item?",
+           text: "Data will be Temporary Deleted!",
+           type: "warning",
+           showCancelButton: true,
+           confirmButtonClass: "btn-danger",
+           confirmButtonText: "Confirm",
+           cancelButtonText: "Cancel",
+           closeOnConfirm: false,
+           closeOnCancel: false,
+        },
+        function(isConfirm) {
+          if (isConfirm) {
+            $.ajax({
+                url : url,
+                type: 'DELETE',
+                dataType : 'json',
+                data : { method : '_DELETE' , submit : true},
+                success:function(data){
+                    if (data == 'Success') {
+                      swal("Deleted!", "Category has been deleted", "success");
+                      table.ajax.reload(null,false);
+                    }
+                }
+            });
+          }else { swal.close(); }
+        });
+    });
+  });
 </script>
-
-
- 
+  
