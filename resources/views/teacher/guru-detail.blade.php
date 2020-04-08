@@ -6,7 +6,7 @@
 
             <div class="card">
 
-                @forelse ($teachers as $t)
+                @forelse ($data as $t)
                 <div class="card-body">
 
                     <center class="m-t-30"> <img src="{{asset('images/users/5.jpg')}}" class="img-circle" width="150">
@@ -72,7 +72,7 @@
 
         </div>
         <div class="col-md-8">
-            @foreach ($teachers as $p)
+            @foreach ($data as $p)
 
 
             <div class="card">

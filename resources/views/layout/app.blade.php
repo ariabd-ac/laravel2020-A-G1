@@ -30,6 +30,9 @@
     <link href="{{asset('plugins/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
     
     <!-- Custom CSS -->
+    <link href="{{ asset('dataTables/jquery.dataTables.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('dataTables/dataTables.bootstrap4.min.css') }} " rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('sweetalert/sweetalert.css')}}" type="text/css">
     <link href="{{asset('plugins/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css')}}" rel="stylesheet">
     <link href="{{asset('plugins/footable/css/footable.core.css')}}" rel="stylesheet">
     <link href="{{asset('plugins/bootstrap-select/bootstrap-select.min.css')}}" rel="stylesheet">
@@ -239,19 +242,25 @@
     <!--stickey kit -->
 
     <!--Custom JavaScript -->
+    <script src="//cdn.datatables.net/1.10.7/js/jquery.dataTables.min.js"></script>
 
     <script src="{{asset('js/custom.min.js')}}"></script>
+    <script src="{{ asset('dataTables/jquery.validate.js') }} "></script>
+    <script src="{{ asset('dataTables/jquery.dataTables.min.js') }} "></script>
+    <script src="{{ asset('dataTables/dataTables.bootstrap4.min.js')}} "></script>
     <script src="{{asset('plugins/footable/js/footable.all.min.js')}}"></script>
     <script src="{{asset('plugins/bootstrap-select/bootstrap-select.min.js')}}" type="text/javascript"></script>
     <script src="{{asset('js/footable-init.js')}}"></script>
     <script src="{{asset('plugins/sticky-kit-master/dist/sticky-kit.min.js')}}"></script>
     <script src="{{asset('plugins/sparkline/jquery.sparkline.min.js')}}"></script>
+    <script src="{{ asset('sweetalert/sweetalert.min.js')}}" type="text/javascript" charset="utf-8" async defer></script>
 
     <!-- ============================================================== -->
 
     <!-- Style switcher -->
 
     <!-- ============================================================== -->
+
 
    <script>
         $('#mdate').bootstrapMaterialDatePicker({ weekStart: 0, time: false });

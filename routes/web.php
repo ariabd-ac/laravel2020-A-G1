@@ -27,4 +27,8 @@ Route::resource('mapel', 'MapelController');
 
 Auth::routes();
 
-Route::get('/admin', 'HomeController@index')->name('home');
+// Route::get('getDataGuru', [
+// 	'uses' => 'TeachersController@dataGuru',
+// 	'as' => 'ajax.get.data.guru'
+// ]);
+Route::get('/home', 'HomeController@index')->name('home');
