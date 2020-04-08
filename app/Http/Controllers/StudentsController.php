@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
 use App\Mapel;
 use App\Student;
-use Illuminate\Http\Request;
 use DataTables;
 use Validator;
 

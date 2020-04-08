@@ -16,7 +16,7 @@ class StudentSeeder extends Seeder
         //
         $faker  = Faker::create('id_ID');
 
-        $jurusan = ['IPA','IPS'];
+        $jurusan = ['IPA','IPS','BAHASA'];
         for ($i = 0; $i <= 100; $i++) {
             if ($i < 10) {
                 $kelas = '10' . $i;

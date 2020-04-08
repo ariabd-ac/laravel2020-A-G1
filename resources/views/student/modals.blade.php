@@ -13,18 +13,22 @@
               <div class="form-group">
                 <label for="name" class="col-form-label">Name:</label>
                 <input type="text" class="form-control" name="nama" required>
+                <small class="errorNama text-danger hidden"></small>
               </div>
               <div class="form-group">
                 <label for="name" class="col-form-label">Nomer Induk Siswa:</label>
                 <input type="number" class="form-control" name="nis" required>
+                <small class="errorNis text-danger hidden"></small>
               </div>
                  <div class="form-group">
                 <label for="mdate" class="col-form-label">Tanggal lahir:</label>
                 <input type="date" class="form-control" name="ttl" id="mdate" data-dtp="dtp_PJfPo" placeholder="2017-06-04">
-              </div>
+                <small class="errorTtl text-danger hidden"></small>
+            </div>
               <div class="form-group">
                   <label for="country" class="col-form-label">Alamat:</label>
                   <input type="text" class="form-control" name="alamat" required>
+                  <small class="errorAlamat text-danger hidden"></small>
               </div>
               <div class="form-group">
                   <label for="country" class="col-form-label">Jenis Kelamin:</label>
@@ -33,12 +37,13 @@
                     <option value="L">Laki-Laki</option>
                     <option value="P">Perempuan</option>
                   </select>
+                  <small class="errorJk text-danger hidden"></small>
               </div>
               <div class="form-group">
                   <label for="country" class="col-form-label">No Telfon:</label>
                   <input type="text" class="form-control" name="phone" required>
+                  <small class="errorPhone text-danger hidden"></small>
               </div>
-    
                 <div class="form-group">
                   <label for="country" class="col-form-label">Kelas: </label>
                   <select class="form-control" name="kelas">
@@ -47,8 +52,8 @@
                     <option value="11">11</option>
                     <option value="12">12</option>
                   </select>
+                  <small class="errorKelas text-danger hidden"></small>
               </div>
-
                <div class="form-group">
                   <label for="country" class="col-form-label">Jurusan: </label>
                   <select class="form-control" name="jurusan">
@@ -57,18 +62,19 @@
                     <option value="IPS">IPS</option>
                     <option value="Bahasa">Bahasa</option>
                   </select>
+                  <small class="errorJurusan text-danger hidden"></small>
               </div>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="submit" class="btn btn-primary">Tambah Anggota</button>
+          <button type="submit" id="storeBtn" class="btn btn-primary">Tambah Anggota</button>
             </form>
         </div>
       </div>
     </div>
   </div>
 
-  <div class="modal fade" id="editModal" tabindex="-1" data-backdrop="static"   role="dialog" aria-labelledby="editData" aria-hidden="true">
+  <div class="modal fade" id="editModal" data-backdrop="static" role="dialog" aria-labelledby="editData" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header bg-warning">
@@ -78,24 +84,28 @@
           </button>
         </div>
         <div class="modal-body">
-          <form id="editForm" method="POST">
+          <form id="editForm">
             {{ csrf_field() }}
-            {{ method_field('PUT') }}
+            <input type="hidden" id="edit_id" name="id">
               <div class="form-group">
                 <label for="name" class="col-form-label">Name:</label>
                 <input type="text" class="form-control" name="nama" required>
+                <small class="edit_errorNama text-danger hidden"></small>
               </div>
               <div class="form-group">
                 <label for="name" class="col-form-label">Nomer Induk Siswa:</label>
                 <input type="number" class="form-control" name="nis" required>
+                <small class="edit_errorNis text-danger hidden"></small>
               </div>
                  <div class="form-group">
                 <label for="mdate" class="col-form-label">Tanggal lahir:</label>
                 <input type="date" class="form-control" name="ttl" id="mdate" data-dtp="dtp_PJfPo" placeholder="2017-06-04">
+                <small class="edit_errorTtl text-danger hidden"></small>
               </div>
               <div class="form-group">
                   <label for="country" class="col-form-label">Alamat:</label>
                   <input type="text" class="form-control" name="alamat" required>
+                  <small class="edit_errorAlamat text-danger hidden"></small>
               </div>
               <div class="form-group">
                   <label for="country" class="col-form-label">Jenis Kelamin:</label>
@@ -104,12 +114,13 @@
                     <option value="L">Laki-Laki</option>
                     <option value="P">Perempuan</option>
                   </select>
+                  <small class="edit_errorJk text-danger hidden"></small>
               </div>
               <div class="form-group">
                   <label for="country" class="col-form-label">No Telfon:</label>
                   <input type="text" class="form-control" name="phone" required>
+                  <small class="edit_errorPhone text-danger hidden"></small>
               </div>
-    
                 <div class="form-group">
                   <label for="country" class="col-form-label">Kelas: </label>
                   <select class="form-control" name="kelas">
@@ -118,8 +129,8 @@
                     <option value="11">11</option>
                     <option value="12">12</option>
                   </select>
+                  <small class="edit_errorKelas text-danger hidden"></small>
               </div>
-
                <div class="form-group">
                   <label for="country" class="col-form-label">Jurusan: </label>
                   <select class="form-control" name="jurusan">
@@ -128,11 +139,12 @@
                     <option value="IPS">IPS</option>
                     <option value="Bahasa">Bahasa</option>
                   </select>
+                  <small class="edit_errorJurusan text-danger hidden"></small>
               </div>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="submit" class="btn btn-warning" data-id="">Ubah Anggota</button>
+          <button type="submit" class="btn btn-warning" id="updateBtn">Ubah Anggota</button>
             </form>
         </div>
       </div>
