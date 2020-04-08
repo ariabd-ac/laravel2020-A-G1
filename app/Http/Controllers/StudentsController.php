@@ -15,9 +15,9 @@ class StudentsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function admin(){
-        return \view ('layout.app');
-    }
+    // public function admin(){
+    //     return \view ('layout.app');
+    // }
     // public function index()
     public function index(Request $request)
 
@@ -71,7 +71,7 @@ class StudentsController extends Controller
         ]);
 
         if($validator->fails()) {
-            return response() -> json(['errors' => $validator->getMessageBag()->toArray()]);
+            return response()->json(['errors' => $validator->getMessageBag()->toArray()]);
         }else {
             $students = new Student;
             $students->nama = $request->nama;
@@ -154,7 +154,7 @@ class StudentsController extends Controller
         //     'kelas' => $request->kelas,
         //     'jurusan' => $request->jurusan
         // ]);
-        return redirect()->route('siswa.index')->with('message', 'Data anda telah diupdate!');
+        // return redirect()->route('siswa.index')->with('message', 'Data anda telah diupdate!');
 
         $validator = Validator::make($request->all(), [
             'nama' => 'required',
