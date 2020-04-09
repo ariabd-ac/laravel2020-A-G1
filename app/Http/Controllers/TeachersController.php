@@ -33,6 +33,8 @@ class TeachersController extends Controller
                     $btn = '<button type="button" onclick="location.href =\''.route('guru.show', $row->id).'\'" class="detail btn btn-info btn-sm mr-1 detailBtn">Detail</button>';
                     $btn .= '<button type="button" data-id="/guru/'.$row->id.'/edit" class="edit btn btn-warning btn-sm mr-1 editBtn">Edit</button>';
                     $btn .= '<button type="submit" data-id="/guru/'.$row->id.'" class="btn btn-danger btn-sm deleteBtn">Delete</button>';
+                    
+                    
                     return $btn;
                 })
                 ->rawColumns(['action'])

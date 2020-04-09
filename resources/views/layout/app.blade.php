@@ -37,6 +37,7 @@
     <link href="{{asset('plugins/footable/css/footable.core.css')}}" rel="stylesheet">
     <link href="{{asset('plugins/bootstrap-select/bootstrap-select.min.css')}}" rel="stylesheet">
     <link href="{{asset('css/style.css')}}" rel="stylesheet">
+    <script src="{{ asset('js/jquery-3.3.1.min.js') }}" crossorigin="anonymous"></script>
 
     {{-- date picker --}}
     <link href="{{asset('plugins/bootstrap-datepicker/bootstrap-datepicker.min.css')}}" rel="stylesheet" type="text/css" />
@@ -219,7 +220,8 @@
 
     <!-- ============================================================== -->
 
-    <script src="{{asset('plugins/jquery/jquery.min.js')}}"></script>
+    {{-- <script src="{{asset('plugins/jquery/jquery.min.js')}}"></script> --}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
     <!-- Bootstrap tether Core JavaScript -->
 
@@ -254,6 +256,7 @@
     <script src="{{asset('plugins/sticky-kit-master/dist/sticky-kit.min.js')}}"></script>
     <script src="{{asset('plugins/sparkline/jquery.sparkline.min.js')}}"></script>
     <script src="{{ asset('sweetalert/sweetalert.min.js')}}" type="text/javascript" charset="utf-8" async defer></script>
+    <script src="{{ asset('js/jquery.sharrre.min.js') }}"></script>
 
     <!-- ============================================================== -->
 

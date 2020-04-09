@@ -18,7 +18,7 @@
             </div>
 
             <div class="table-responsive">
-                <table class="table" id="datatable">
+                <table class="table data-table" id="table">
 
                     <thead class="">
 

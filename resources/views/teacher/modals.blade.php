@@ -81,6 +81,7 @@
           <form id="editForm">
             {{ csrf_field() }}
             <input type="hidden" id="edit_id" name="id">
+            <h3 style="color:red;" class="text-center">Tanggal Lahir diisi</h3>
               <div class="form-group">
                 <label for="name" class="col-form-label">Kode Guru:</label>
                 <input type="text" class="form-control" name="kodeguru" id="edit_kodeguru">
@@ -157,7 +158,7 @@
             {{ method_field('DELETE') }}
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
             <button type="submit" class="btn btn-danger btnHapus" data-id="">Hapus Anggota</button>
-        </form>
+          </form>
         </div>
       </div>
     </div>
@@ -177,7 +178,7 @@
 
     // View data with yajra datatables 
 
-    var table = $('#datatable').DataTable({
+    var table = $('.data-table').DataTable({
 
     processing: true,
     serverSide: true,
@@ -367,6 +368,7 @@
         });
     });
 
+    // Delete Or Destroy button to show sweetalert
      $('#table').on('click','.deleteBtn[data-id]',function(e){
         e.preventDefault();
         var url = $(this).data('id');
@@ -399,6 +401,8 @@
           }else { swal.close(); }
         });
     });
+
+
   });
 </script>
 
