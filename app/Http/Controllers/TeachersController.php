@@ -33,7 +33,7 @@ class TeachersController extends Controller
                     $btn = '<button type="button" onclick="location.href =\''.route('guru.show', $row->id).'\'" class="detail btn btn-info btn-sm mr-1 detailBtn">Detail</button>';
                     $btn .= '<button type="button" data-id="/guru/'.$row->id.'/edit" class="edit btn btn-warning btn-sm mr-1 editBtn">Edit</button>';
                     $btn .= '<button type="submit" data-id="/guru/'.$row->id.'" class="btn btn-danger btn-sm deleteBtn">Delete</button>';
-                    
+                   
                     
                     return $btn;
                 })
@@ -42,7 +42,7 @@ class TeachersController extends Controller
             }
                 return view('teacher.index');
            
-           // return Datatables::of(Teacher::all())->make(true);
+           
 
 
     }
@@ -65,30 +65,7 @@ class TeachersController extends Controller
      */
     public function store(Request $request)
     {
-        //
-
-        // $this->validate($request, [
-        // 'kodeguru' => 'required|max:5,',
-        // 'nama' => 'required|max:100|min:4',
-        // 'nig' => 'required|numeric|max:5',
-        // 'phone' => 'required|max:12',
-        // 'alamat' => 'required',
-        // 'ttl' => 'required',
-        // 'jk' => 'required',
-        // 'status' => 'required'
-
-        // ]);
-
-        // $teachers = Teacher::create([
-        //     'kodeguru' => $request->kodeguru,
-        //     'nama' => $request->nama,
-        //     'nig' => $request->nig,
-        //     'phone' => $request->phone,
-        //     'alamat' => $request->alamat,
-        //     'ttl' => $request->ttl,
-        //     'jk' => $request->jk,
-        //     'status' => $request->status
-        // ]);
+        
 
         $validator = Validator::make($request->all(), [
             'kodeguru' => 'required',
@@ -117,7 +94,7 @@ class TeachersController extends Controller
             return response()->json(['success' => true]);
         }
 
-        // return redirect()->route('guru.index');
+        
     }
 
     /**
@@ -157,17 +134,7 @@ class TeachersController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
-        //    Teacher::where('id', $id)->update([
-        //     'kodeguru' => $request->kodeguru,
-        //     'nama' => $request->nama,
-        //     'nig' => $request->nig,
-        //     'phone' => $request->phone,
-        //     'alamat' => $request->alamat,
-        //     'ttl' => $request->ttl,
-        //     'jk' => $request->jk,
-        //     'status' => $request->status
-        // ]);
+   
 
         $validator = Validator::make($request->all(), [
             'kodeguru' => 'required',
@@ -196,7 +163,7 @@ class TeachersController extends Controller
             return response()->json(['success' => true]);
         }
 
-        // return redirect()->route('guru.index')->with('message', 'Data anda telah diupdate!');
+        
     }
 
     /**
@@ -207,10 +174,6 @@ class TeachersController extends Controller
      */
     public function destroy($id)
     {
-        //
-        // $teachers = Teacher::findOrFail($id);
-        // $teachers->delete();
-        // return redirect()->route('guru.index')->with('message', 'Data anda telah dihapus!');
 
         if (Teacher::destroy($id)) {
             $data = 'Success';

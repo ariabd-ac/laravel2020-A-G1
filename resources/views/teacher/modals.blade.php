@@ -375,7 +375,7 @@
         console.log(url);
         swal({
            title: "Are you sure want to remove this item?",
-           text: "Data will be Temporary Deleted!",
+           text: "Data akan terhapus permanen!",
            type: "warning",
            showCancelButton: true,
            confirmButtonClass: "btn-danger",
@@ -393,7 +393,7 @@
                 data : { method : '_DELETE' , submit : true},
                 success:function(data){
                     if (data == 'Success') {
-                      swal("Deleted!", "Category has been deleted", "success");
+                      swal("Deleted!", "Guru berhasil di hapus", "success");
                       table.ajax.reload(null,false);
                     }
                 }
@@ -401,6 +401,10 @@
           }else { swal.close(); }
         });
     });
+
+
+
+    
 
 
   });
