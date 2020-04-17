@@ -1,15 +1,18 @@
+@section('title', 'Dashboard')
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>@yield('title')</title>
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700|Open+Sans:400,300,700,800" rel="stylesheet" media="screen">
 
   <link href="{{asset('mutli/css/bootstrap.min.css')}}" rel="stylesheet" media="screen">
   <link href="{{asset('multi/css/style.css')}}" rel="stylesheet" media="screen">
   <link href="{{asset('multi/color/default.css')}}" rel="stylesheet" media="screen">
+  <link rel="shortcut icon" href="https://www.kemdikbud.go.id/main/files/large/83790f2b43f00be"/> 
+  
 </head>
 <body>
     <!-- Navigation -->
@@ -54,8 +57,9 @@
             <div class="carousel-container">
               <div class="carousel-content">
                 <h2 class="animated fadeInDown">SIMS</h2>
-                <p class="animated fadeInUp">Project yang dibuat dengan keyakinan meski banyak kurang, tidak tidur untuk mengerjakan ini demi uas. <br> 강사는 포주 역할을 포기한 적이 없으므로 자동으로 학습해야합니다. 랩탑의 케이크가 안 좋아 보이네요<br></p>
-                <p style="color:red; font-size:20px;">أعني ذلك بالكورية</p>
+                <p class="animated fadeInUp">Sistem Informasi Manajement Sekolah</p>
+                <p style="color:red; font-size:20px;">Projek Team : </p>
+                <p>Ari Agung</p>
                   @auth
                         <a href="{{ url('/home') }}">Home</a>
                     @else

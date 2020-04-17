@@ -54,7 +54,7 @@
 
                         <li class="nav-devider"></li>
                         <li class="nav-small-cap">Dashboard</li>
-                        <li> <a class="" href="/admin" aria-expanded="false"><i class="mdi mdi-gauge"></i><span class="hide-menu">Dashboard</span></a></li>
+                        <li> <a class="" href="/home" aria-expanded="false"><i class="mdi mdi-gauge"></i><span class="hide-menu">Dashboard</span></a></li>
 
 
                         <li class="nav-devider"></li>

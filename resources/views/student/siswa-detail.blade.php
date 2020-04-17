@@ -1,11 +1,12 @@
 @extends('layout.app')
+@section('title', 'Detail Data Siswa')
 
 @section('content')
     <div class="row">
         <div class="col-md-4">
             <div class="card">
 
-                @forelse ($students as $t)
+                @forelse ($data as $t)
                 <div class="card-body">
 
                     <center class="m-t-30"> <img src="{{asset('images/users/5.jpg')}}" class="img-circle" width="150">
@@ -63,7 +64,7 @@
             </div>
         </div>
         <div class="col-md-8">
-            @foreach ($students as $t)
+            @foreach ($data as $t)
                 
             
             <div class="card">
@@ -86,13 +87,13 @@
                          @php
                         $i=1
                         @endphp
-                        @foreach ($t->mapel as $m)
+                        @foreach ($t->mapel as $mk)
                             
                         <tbody>
                             <tr>
                                 <td>{{$i++}}</td>
-                            <td>{{$m->kode}}</td>
-                            <td>{{$m->nama}}</td>
+                            <td>{{$mk->kode}}</td>
+                            <td>{{$mk->nama}}</td>
                             </tr>
                            
                         </tbody>

@@ -1,4 +1,5 @@
 @extends('layout.app')
+@section('title', 'Detail Data Guru')
 
 @section('content')
     <div class="row">

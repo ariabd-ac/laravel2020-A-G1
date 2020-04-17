@@ -1,5 +1,5 @@
 @extends('layout.app')
-
+@section('title', 'Data Mapel')
 @section('content')
 <div class="row">
     <div class="col-12">

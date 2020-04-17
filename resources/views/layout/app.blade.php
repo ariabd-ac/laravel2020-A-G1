@@ -23,7 +23,7 @@
 
     <link rel="icon" type="image/png" sizes="16x16" href="{{asset('images/favicon.pn')}}g">
 
-    <title>Admin Press Admin Template - The Ultimate Bootstrap 4 Admin Template</title>
+    <title>@yield('title')</title>
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <!-- Bootstrap Core CSS -->
@@ -37,6 +37,7 @@
     <link href="{{asset('plugins/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css')}}" rel="stylesheet">
     <link href="{{asset('plugins/footable/css/footable.core.css')}}" rel="stylesheet">
     <link href="{{asset('plugins/bootstrap-select/bootstrap-select.min.css')}}" rel="stylesheet">
+     
     <link href="{{asset('css/style.css')}}" rel="stylesheet">
     <script src="{{ asset('js/jquery-3.3.1.min.js') }}" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>  
@@ -60,6 +61,7 @@
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 
 <![endif]-->
+<link rel="shortcut icon" href="https://www.kemdikbud.go.id/main/files/large/83790f2b43f00be"/> 
 
 </head>
 
