@@ -71,7 +71,7 @@
                         <li class="nav-devider"></li>
                         <li class="nav-small-cap">Sekolah</li>
                         <li> <a class="" href="/mapel" aria-expanded="false"><i class="mdi mdi-gauge"></i><span class="hide-menu">Data Mapel</span></a></li>
-                        <li> <a class="" href="#" aria-expanded="false"><i class="mdi mdi-gauge"></i><span class="hide-menu">Data Jabatan</span></a></li>
+                        
 
                     </ul>
 
