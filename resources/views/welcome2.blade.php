@@ -93,18 +93,18 @@
             <img src="{{asset('landing/img/hero-slide-1.jpg')}}" alt="Hero Slide">
 
             <div class="carousel-caption">
-                <h1>Strategic Management</h1>
+                <h1>Lulusan terbaik</h1>
 
-                <p>Efficiently develop parallel e-markets through impactful outsourcing.<br>Conveniently drive prospective functionalities before.</p>
+                <p>Alumni lulusan dari SMA ini dapat kuliah di Perguruan tinggi Negeri dan Luar Negeri</p>
             </div>
         </div>
         <div class="item">
             <img src="{{asset('landing/img/hero-slide-2.jpg')}}" alt="...">
 
             <div class="carousel-caption">
-                <h1>Market Analyst</h1>
+                <h1>Lulus dapat kerja</h1>
 
-                <p>Synergistically enhance low-risk high-yield testing procedures<br>with clicks-and-mortar architectures.
+                <p>Setelah lulus dari Sekolah inipun dapat langsung kerja yang di tempat inginkan
                 </p>
             </div>
         </div>
