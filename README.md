@@ -16,3 +16,8 @@
 8. php artisan key:generate
 9. php artisan migrate --seed
 10. php artisan serve
+
+# DEMO
+http://laravel-a1.tegalian.com/
+
+tester1@mailinator.com : 123
