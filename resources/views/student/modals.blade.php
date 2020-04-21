@@ -8,7 +8,7 @@
           </button>
         </div>
         <div class="modal-body">
-          <form id="tambahForm" action="{{ Route('siswa.store') }}" method="POST">
+          <form id="tambahForm">
             {{ csrf_field() }}
               <div class="form-group">
                 <label for="name" class="col-form-label">Name:</label>
@@ -189,7 +189,7 @@
 
     // View data with yajra datatables 
 
-    var table = $('#datatable').DataTable({
+    var table = $('.data-table').DataTable({
 
     processing: true,
     serverSide: true,
@@ -414,5 +414,5 @@
         });
     });
   });
-</script>
   
+</script>
