@@ -23,10 +23,14 @@
                     <div class="profile-text">
 
                         <h5>{{ Auth::user()->name }}</h5>
+                        
+                        <div>
 
-                        <a href="#" class="dropdown-toggle u-dropdown" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true"><i class="mdi mdi-settings"></i></a>
+                            <a href="{{route('password.change')}}" class="mdi mdi-settings" title="Ganti password"></a>
+                            <a href="app-email.html" class="" data-toggle="tooltip" title="Email"><i class="mdi mdi-gmail"></i></a>
+                        </div>
 
-                        <a href="app-email.html" class="" data-toggle="tooltip" title="Email"><i class="mdi mdi-gmail"></i></a>
+
 
                         <div>
 

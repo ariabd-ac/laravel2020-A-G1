@@ -32,3 +32,5 @@ Auth::routes(['verify' => true]);
 // 	'as' => 'ajax.get.data.guru'
 // ]);
 Route::get('/home', 'HomeController@index')->name('home')->middleware('verified');
+Route::get('/change-password','Auth\ChangePasswordController@index')->name('password.change');
+Route::post('/change-password','Auth\ChangePasswordController@changePassword')->name('password.update');
