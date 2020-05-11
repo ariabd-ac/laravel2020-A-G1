@@ -25,10 +25,10 @@ Route::resource('guru', 'TeachersController');
 Route::resource('siswa', 'StudentsController');
 Route::resource('mapel', 'MapelController');
 
-Auth::routes();
+Auth::routes(['verify' => true]);
 
 // Route::get('getDataGuru', [
 // 	'uses' => 'TeachersController@dataGuru',
 // 	'as' => 'ajax.get.data.guru'
 // ]);
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'HomeController@index')->name('home')->middleware('verified');
