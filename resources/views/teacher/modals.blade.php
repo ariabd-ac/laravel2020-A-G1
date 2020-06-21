@@ -59,7 +59,7 @@
                   <small class="errorStatus text-danger hidden"></small>
               </div>
               <div class="form-group">
-                <label for="pdf" class="col-form-label">PDF:</label> <br/>
+                <label for="pdf" class="col-form-label">SK:</label> <br/>
                 <input type="file" id="pdf" name="pdf" />
                 <small class="errorPdf text-danger hidden"></small>
               </div>
@@ -148,7 +148,7 @@
                   <small class="edit_errorStatus text-danger hidden"></small>
               </div>
               <div class="form-group">
-                <label for="pdf" class="col-form-label">PDF <small class="text-muted">*kosongkan kalo gak mau diganti</small>:</label> <br/>
+                <label for="pdf" class="col-form-label">SK <small class="text-muted">kosongkan jika tidak ingin mengganti</small>:</label> <br/>
                 <input type="file" id="edit_pdf" name="pdf" />
                 <small class="edit_errorPdf text-danger hidden"></small>
               </div>
@@ -160,7 +160,7 @@
                 </div>
               </div>
               <div class="form-group">
-                <label for="gambar" class="col-form-label">Upload gbr<small class="text-muted">*kosongkan kalo nggak mau diganti</small>:</label> <br/>
+                <label for="gambar" class="col-form-label">Upload Gambar<small class="text-muted">kosongkan jika tidak ingin mengganti</small>:</label> <br/>
                 <input type="file" id="edit_gambar" name="gambar" />
                 <small class="edit_errorGambar text-danger hidden"></small>
               </div>

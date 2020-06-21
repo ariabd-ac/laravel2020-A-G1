@@ -33,8 +33,10 @@ class TeacherSeeder extends Seeder
                 'ttl' => $faker->dateTimeBetween('1990-01-01', '2012-12-31')->format('Y/m/d'),
                 'jk' =>$faker->randomElement($array = array ('P','L')),
                 'status' => $faker->randomElement($status),
+                'pdf' => 'contoh.pdf',
                 'created_at' => now(),
-                'updated_at' => now()
+                'updated_at' => now(),
+                'gambar' => 'avatar.png'
             ]);
         }
     }
