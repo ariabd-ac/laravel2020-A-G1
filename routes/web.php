@@ -34,3 +34,6 @@ Auth::routes(['verify' => true]);
 Route::get('/home', 'HomeController@index')->name('home')->middleware('verified');
 Route::get('/change-password','Auth\ChangePasswordController@index')->name('password.change');
 Route::post('/change-password','Auth\ChangePasswordController@changePassword')->name('password.update');
+
+// wali murid
+Route::resource('walim','WaliMuridController');

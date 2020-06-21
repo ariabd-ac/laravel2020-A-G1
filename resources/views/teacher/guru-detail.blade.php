@@ -10,8 +10,11 @@
                 @forelse ($data as $t)
                 <div class="card-body">
 
-                    <center class="m-t-30"> <img src="{{asset('images/users/5.jpg')}}" class="img-circle" width="150">
+                    @php $gambar = Storage::url('public/uploads/teachers/photos/'.$t->gambar); @endphp
 
+                    <center class="m-t-30"><img src="{{ url($gambar) }}" alt="" width="100" height="100">
+                      
+                        
                         <h4 class="card-title m-t-10">{{ $t['nama'] }}</h4>
 
                         <h6 class="card-subtitle">{{ $t['jk'] }}</h6>
@@ -19,6 +22,12 @@
                         <h6 class="card-subtitle">{{ $t['nig'] }}</h6>
 
                         <h6 class="card-subtitle">{{ $t['kodeguru'] }}</h6>
+
+                        @php $pdf = Storage::url('public/uploads/teachers/pdf/'.$t->pdf); @endphp
+
+                        <h6 class="card-subtitle"> <a href="{{ url($pdf) }}" class="btn btn-rounded btn-danger" target="_blank">SK Guru</a></h6>
+
+                       
 
                         {{-- @foreach ($t->mapel as $m)
                             <h6 class="card-subtitle">{{$m->nama}}</h6>

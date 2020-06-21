@@ -8,7 +8,7 @@
           </button>
         </div>
         <div class="modal-body">
-          <form id="tambahForm">
+          <form id="tambahForm"action="" method="post" enctype="multipart/form-data">
             {{ csrf_field() }}
               <div class="form-group">
                 <label for="name" class="col-form-label">Kode Guru:</label>
@@ -57,6 +57,23 @@
                     <option value="PNS">PNS</option>
                   </select>
                   <small class="errorStatus text-danger hidden"></small>
+              </div>
+              <div class="form-group">
+                <label for="pdf" class="col-form-label">PDF:</label> <br/>
+                <input type="file" id="pdf" name="pdf" />
+                <small class="errorPdf text-danger hidden"></small>
+              </div>
+              <div class="form-group">
+                <label for="gambar" class="col-form-label">Upload Foto:</label> <br/>
+                <input type="file" id="gambar" name="gambar" />
+                <small class="errorGambar text-danger hidden"></small>
+              </div>
+              <div class="form-group">
+                <div class="row">
+                  <div class="col s6">
+                      <img src="http://placehold.it/100x100" class="showgambar" style="max-width:200px;max-height:200px;float:left;" />
+                  </div>
+                </div>
               </div>
         </div>
         <div class="modal-footer">
@@ -130,6 +147,30 @@
                   </select>
                   <small class="edit_errorStatus text-danger hidden"></small>
               </div>
+              <div class="form-group">
+                <label for="pdf" class="col-form-label">PDF <small class="text-muted">*kosongkan kalo gak mau diganti</small>:</label> <br/>
+                <input type="file" id="edit_pdf" name="pdf" />
+                <small class="edit_errorPdf text-danger hidden"></small>
+              </div>
+              <div class="form-group">
+                <div class="row">
+                  <div class="col s6">
+                      <a href="" class="btn btn-success btn-sm btn-rounded" id="edit_showpdf" target="_blank">PDF Link</a>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="gambar" class="col-form-label">Upload gbr<small class="text-muted">*kosongkan kalo nggak mau diganti</small>:</label> <br/>
+                <input type="file" id="edit_gambar" name="gambar" />
+                <small class="edit_errorGambar text-danger hidden"></small>
+              </div>
+              <div class="form-group">
+                <div class="row">
+                  <div class="col s6">
+                      <img src="http://placehold.it/100x100" class="showgambar" id="edit_showgambar" style="max-width:200px;max-height:200px;float:left;" />
+                  </div>
+                </div>
+              </div>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -190,6 +231,22 @@
         {data: 'kodeguru', name: 'kodeguru'},
         {data: 'nama', name: 'nama'},
         {data: 'nig', name: 'nig'},
+        {data: 'pdf', name: 'pdf', 
+              render: function( data, type, full, meta ) {
+                        if(data == null){
+                          return '<small class="text-muted">Belum upload</small>';
+                        }else{
+                          return "<a class='btn btn-rounded btn-secondary btn-sm' href=\"/storage/uploads/teachers/pdf/" + data + "\" target='_blank'>pdf</a>"; 
+                        }
+                      }},
+        {data: 'gambar', name: 'gambar', 
+              render: function( data, type, full, meta ) {
+                        if(data == null){
+                          return '<small class="text-muted">Belum upload</small>';
+                        }else{
+                          return "<img src=\"/storage/uploads/teachers/photos/" + data + "\" width=\"50\" height=\"50\"/>"; 
+                        }
+                      }},
         {data: 'phone', name: 'phone'},
         {data: 'alamat', name: 'alamat'},
         {data: 'ttl', name: 'ttl'},
@@ -197,12 +254,19 @@
         {data: 'status', name: 'status'},
         {data: 'action', name: 'action', orderable: false, searchable: false},
     ]
-    })
-    ;
+    });
+   
+   
+    $('.tambahModal').click(function(){
+      $('.showgambar').attr('src', 'http://placehold.it/100x100');
+      $('#storeBtn').html('Tambah');
+      $('#tambahForm').trigger("reset");
+    });
 
-    // Save Button in modal dialog
+    
         $('#storeBtn').click(function (e) {
         e.preventDefault();
+        
         var frm = $('#tambahForm');
         $('.errorKode').hide();
         $('.errorNama').hide();
@@ -212,13 +276,17 @@
         $('.errorTtl').hide();
         $('.errorJk').hide();
         $('.errorStatus').hide();
-        $(this).html('Sending..');
+        $('.errorPdf').hide();
+        $('.errorGambar').hide();
+        
     
         $.ajax({
-          data: frm.serialize(),
+         data : new FormData($("#tambahForm")[0]),
+          dataType : 'json',
+          processData: false,
+          contentType: false,
           url: "{{ route('guru.store') }}",
-          type: "POST",
-          dataType: 'json',
+          method: "POST",
           success: function (data) {
             if (data.errors) {
                 if (data.errors.kodeguru) {
@@ -253,6 +321,14 @@
                   $('.errorStatus').show();
                   $('.errorStatus').text(data.errors.status);
                 }
+                if (data.errors.pdf) {
+                  $('.errorPdf').show();
+                  $('.errorPdf').text(data.errors.pdf);
+                }
+                if (data.errors.gambar) {
+                  $('.errorGambar').show();
+                  $('.errorGambar').text(data.errors.gambar);
+                }
             }else {
               $('#tambahModal').modal('hide');
               frm.trigger("reset");
@@ -286,6 +362,8 @@
                 $('#edit_ttl').val(data.ttl);
                 $('#edit_jk').val(data.jk);
                 $('#edit_status').val(data.status);
+                $('#edit_showpdf').attr('href', 'storage/uploads/teachers/pdf/'+data.pdf);
+                $('#edit_showgambar').attr('src', 'storage/uploads/teachers/photos/'+data.gambar);
                 $('.errorKode').hide();
                 $('.errorNama').hide();
                 $('.errorNig').hide();
@@ -303,6 +381,7 @@
     // Update button in modal dialog
     $('#updateBtn').click(function(e){
         e.preventDefault();
+        var frm = $('#editForm');
         $('.errorKode').hide();
         $('.errorNama').hide();
         $('.errorNig').hide();
@@ -311,15 +390,20 @@
         $('.errorTtl').hide();
         $('.errorJk').hide();
         $('.errorStatus').hide();
+        $('.errorPdf').hide();
+        $('.edit_errorGambar').hide();
         var url = "/guru/"+$('#edit_id').val();
+        var formdata = new FormData($("#editForm")[0]);
+        formdata.append('_method', 'PUT');
         console.log(url);
-        var frm = $('#editForm');
 
         $.ajax({
-            data : frm.serialize(),
-            type :'PUT',
+            method :'POST',
             url : url,
+            data : formdata,
             dataType : 'json',
+            processData: false,
+            contentType: false,
             success:function(data){
               if (data.errors) {
                 if (data.errors.kodeguru) {
@@ -354,6 +438,14 @@
                   $('.errorStatus').show();
                   $('.errorStatus').text(data.errors.status);
                 }
+                 if (data.errors.pdf) {
+                  $('.edit_errorPdf').show();
+                  $('.edit_errorPdf').text(data.errors.pdf);
+                }
+                if (data.errors.gambar){
+                  $('.edit_errorGambar').show();
+                  $('.edit_errorGambar').text(data.errors.gambar);
+                }
                 
               }else {
                 $('#editModal').modal('hide');
@@ -368,7 +460,7 @@
         });
     });
 
-    // Delete Or Destroy button to show sweetalert
+    // Delete Or Destroy 
      $('#table').on('click','.deleteBtn[data-id]',function(e){
         e.preventDefault();
         var url = $(this).data('id');
@@ -402,7 +494,27 @@
         });
     });
 
+    // dileng gmbr
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
 
+            reader.onload = function (e) {
+                $('.showgambar').attr('src', e.target.result);
+            }
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    $("#edit_gambar").change(function () {
+        readURL(this);
+    });
+    $("#gambar").change(function () {
+        readURL(this);
+    });
+    
+    
 
     
 

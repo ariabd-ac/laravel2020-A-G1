@@ -13,4 +13,9 @@ class Student extends Model
     {
         return $this->belongsToMany('App\Mapel');
     }
+
+    public function walim(){
+
+        return $this->hasOne('App\WaliMurid');
+    }
 }

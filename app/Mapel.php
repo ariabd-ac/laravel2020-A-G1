@@ -19,5 +19,7 @@ class Mapel extends Model
     {
       return $this->belongsToMany('App\Student');
     }
+
+
    
 }

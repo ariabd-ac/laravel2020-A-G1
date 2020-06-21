@@ -32,6 +32,10 @@
 
                             <th>No. Induk Guru</th>
 
+                            <th>SK Guru</th>
+
+                            <th>Img</th>
+
                             <th>Phone</th>
 
                             <th>Alamat</th>

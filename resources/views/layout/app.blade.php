@@ -39,8 +39,8 @@
     <link href="{{asset('plugins/bootstrap-select/bootstrap-select.min.css')}}" rel="stylesheet">
      
     <link href="{{asset('css/style.css')}}" rel="stylesheet">
-    <script src="{{ asset('js/jquery-3.3.1.min.js') }}" crossorigin="anonymous"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>  
+    <script src="{{ asset('js/jquery-3.3.1.min.js') }}"></script>
+    {{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>   --}}
 
 
     {{-- date picker --}}
@@ -226,13 +226,16 @@
     <!-- ============================================================== -->
 
     {{-- <script src="{{asset('plugins/jquery/jquery.min.js')}}"></script> --}}
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> --}}
 
     <!-- Bootstrap tether Core JavaScript -->
 
     <script src="{{asset('plugins/bootstrap/js/popper.min.js')}}"></script>
 
     <script src="{{asset('plugins/bootstrap/js/bootstrap.min.js')}}"></script>
+
+    {{-- <script src="{{asset('plugins/jquery/jquery.min.js')}}"></script> --}}
 
     <!-- slimscrollbar scrollbar JavaScript -->
 
