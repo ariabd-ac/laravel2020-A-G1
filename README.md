@@ -22,8 +22,17 @@
 
 1. Migrasi & seed
 2. Verfikasi, change, forgot pswd
-3. File Storage -> Guru full, Walim create saja
+3. File Storage -> Guru full, Walim create saja , ~~Student~~
 4. Socialite. -> Github
+
+# Verfikasi email
+
+MAIL*DRIVER=smtp <br>
+MAIL_HOST=smtp.gmail.com <br>
+MAIL_PORT=587 <br>
+MAIL_USERNAME= xxxx@gmail.com \_FTP email* <br>
+MAIL_PASSWORD=xxxxx<br>
+MAIL_ENCRYPTION=tls
 
 # DEMO
 
