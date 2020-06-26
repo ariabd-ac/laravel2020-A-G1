@@ -1,6 +1,7 @@
 # Sistem Informasi Management Sekolah
 
-## Anggota 
+## Anggota
+
 1. Ari Abdurrahman Ghufron
 2. Agung Sahrul Bahri
 
@@ -17,7 +18,15 @@
 9. php artisan migrate --seed
 10. php artisan serve
 
+## Fitur
+
+1. Migrasi & seed
+2. Verfikasi, change, forgot pswd
+3. File Storage -> Guru full, Walim create saja
+4. Socialite. -> Github
+
 # DEMO
+
 http://laravel-a1.tegalian.com/
 
 tester1@mailinator.com : 123

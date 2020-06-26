@@ -37,3 +37,6 @@ Route::post('/change-password','Auth\ChangePasswordController@changePassword')->
 
 // wali murid
 Route::resource('walim','WaliMuridController');
+
+Route::get('login/github', 'Auth\LoginController@redirectToProvider');
+Route::get('login/github/callback', 'Auth\LoginController@handleProviderCallback');
