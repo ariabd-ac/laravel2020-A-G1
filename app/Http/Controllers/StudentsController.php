@@ -38,7 +38,7 @@ class StudentsController extends Controller
                 ->make(true);
         }
         return view('student.index');
-        // return view('student.index', \compact('students'));
+
     }
 
     /**
@@ -68,11 +68,40 @@ class StudentsController extends Controller
             'phone' => 'required',
             'kelas' => 'required',
             'jurusan' => 'required',
+            'pdf' => 'max:2048|mimes:pdf',
+            'gambar' => 'image|max:2048|mimes:jpeg,jpg,png,gif'
         ]);
 
         if($validator->fails()) {
             return response()->json(['errors' => $validator->getMessageBag()->toArray()]);
         }else {
+
+            if($request-hasFile('pdf')){
+                // ada file yang di upload
+                $filenameWithExt = $request->file('pdf')->getClientOriginalName();
+                $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+                $extension = $request->file('pdf')->getClientOriginalExtension();
+                $filenameSimpanPdf = $filename.'_'.time().'.'.$extension;
+
+                $path = $request->file('gambar')->storeAs('public/uploads/students/pdf', $filenameSimpanPdf);
+            }else{
+                // tidak ada file yang di upload
+                $filenameSimpanPdf = 'nodetect.pdf';
+            }
+
+            if($request->hasFile('gambar')){
+                // ada file yang di upload
+                $filenameWithExt = $request->file('gambar')->getClientOriginalName();
+                $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+                $extension = $request->file('gambar')->getClientOriginalExtension();
+                $filenameSimpan = $filename.'_'.time().'.'.$extension;
+
+                $path = $request->file('gambar')->storeAs('public/uploads/students/photos', $filenameSimpan);
+            }else{
+                // tidak ada file yang di upload
+                $filenameSimpan = 'noimage.jpg';
+            }
+
             $students = new Student;
             $students->nama = $request->nama;
             $students->nis = $request->nis;
@@ -82,6 +111,9 @@ class StudentsController extends Controller
             $students->phone = $request->phone;
             $students->kelas = $request->kelas;
             $students->jurusan = $request->jurusan;
+            $students->pdf = $filenameSimpanPdf;
+            $students->gambar = $filenameSimpan;
+
             $students->save();
             return response()->json(['success' => true]);
         }
@@ -165,6 +197,8 @@ class StudentsController extends Controller
             'phone' => 'required',
             'kelas' => 'required',
             'jurusan' => 'required',
+            'pdf' => 'max:2048|mimes:pdf',
+            'gambar' => 'image|max2048|mimes:jpeg,jpg,png,gif'
         ]);
 
         if($validator->fails()) {
@@ -179,6 +213,44 @@ class StudentsController extends Controller
             $students->phone = $request->phone;
             $students->kelas = $request->kelas;
             $students->jurusan = $request->jurusan;
+
+                if($request->hasFile('pdf')){
+                    // ada file yang di upload
+                    $filenameWithExt = $request->file('pdf')->getClientOriinalName();
+                    $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+                    $extension = $request->file('pdf')->getClientOriginalExtension();
+                    $filenameSimpanPdf = $filename.'_'.time().'.'.$extension;
+
+                    $path = $request->file('pdf')->storeAs('public/uploads/students/pdf', $filenameSimpanPdf);
+
+                    if($students->pdf != NULL){
+                        unlink(public_path('storage/uploads/students/pdf/'.$students->pdf));
+                    }
+
+                    $students->pdf = $filenameSimpanPdf;
+                }else{
+                    // tidak ada file yang di upload
+                    $filenameSimpanPdf = 'nodetect.pdf';
+                }
+
+                if($request->hasFile('gambar')){
+                    // ada file yang di upload
+                    $filenameWithExt = $request->file('gambar')->getClientOriginalName();
+                    $filename = pathinfo($filenameSimpanPdf, PATHINFO_FILENAME);
+                    $extension = $request->file('gambar')->getClientOriginalExtension();
+                    $filenameSimpan = $filename.'_'.time().'.'.$extension;
+
+                    $path = $request->file('gambar')->storeAs('public/uploads/students/photos', $filenameSimpan);
+
+                    if($students->gambar != NULL){
+                        unlink(public_path('storage/uploads/students/photos/'.$students->gambar));
+                    }
+
+                    $students->gambar = $filenameSimpan;
+                }else{
+                    //tidak ada file yang di upload
+                    $filenameSimpan = 'noimage.jpg';
+                }
             $students->save();
             return response()->json(['success' => true]);
         }
@@ -194,10 +266,13 @@ class StudentsController extends Controller
      */
     public function destroy($id)
     {
-        //
-        // $students = Student::findOrFail($id);
-        // $students->delete();
-        // return redirect()->route('siswa.index')->with('message', 'Data anda telah dihapus!');
+        $data = Student::findOrFail($id);
+        if($data->pdf != NULL){
+            unlink(public_path('storage/uploads/students/pdf/'.$data->pdf));
+        }
+        if($data->pdf != NULL){
+            unlink(public_path('storage/uploads/students/photos/'.$data->gambar));
+        }
         if (Student::destroy($id)) {
             $data = 'Success';
         }else {

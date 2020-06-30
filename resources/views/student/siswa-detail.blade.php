@@ -9,7 +9,9 @@
                 @forelse ($data as $t)
                 <div class="card-body">
 
-                    <center class="m-t-30"> <img src="{{asset('images/users/5.jpg')}}" class="img-circle" width="150">
+                    @php $gambar = Storage::url('public/uploads/students/photos/'.$t->gambar); @endphp
+
+                    <center class="m-t-30"> <img src="{{url($gambar)}}" alt="" width="100" height="100">
 
                         <h4 class="card-title m-t-10">{{ $t['nama'] }}</h4>
 
@@ -19,6 +21,13 @@
 
                         <h6 class="card-subtitle">{{ $t['kelas'] }} {{ $t['jurusan'] }}</h6>
 
+                        @php $pdf = Storage::url('public/uploads/students/pdf/'.$t->pdf); @endphp
+
+                        <h6 class="card-subtitle"> <a href="{{url($pdf)}}" class="btn btn-rounded btn-danger" target="_blank">SK SISWA</a></h6>
+
+                        {{-- @foreach ($t->mapel as $m)
+                            <h6 class="card-subtitle">{{$m->nama}}</h6>
+                            @endforeach --}}
                     </center>
 
                 </div>
@@ -64,12 +73,35 @@
             </div>
         </div>
         <div class="col-md-8">
-            @foreach ($data as $t)
+            @foreach ($data as $p)
                 
             
             <div class="card">
                 <div class="card-body">
-                <h5>Mata pelajaran <br>{{$t['nama']}}</h5>
+                <form class="form-horizontal form-material">
+                    
+                    <div class="form-group">
+                        <label class="col-md-12">Nama Siswa</label>
+                        <div class="col-md-12">
+                            <h5>{{$p['nama']}}</h5>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="col-md-12">Phone</label>
+                        <div class="col-md-12">
+                            <h5>{{$p['phone']}}</h5>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-12">Jurusan</label>
+                        <div class="col-md-12">
+                            <h5>{{$p['jurusan']}}</h5>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
                     <div class="table-responsive">
                         <table class="table color-table warning-table">
                          <thead>
@@ -87,13 +119,13 @@
                          @php
                         $i=1
                         @endphp
-                        @foreach ($t->mapel as $mk)
+                        @foreach ($p->mapel as $mp)
                             
                         <tbody>
                             <tr>
                                 <td>{{$i++}}</td>
-                            <td>{{$mk->kode}}</td>
-                            <td>{{$mk->nama}}</td>
+                            <td>{{$mp->kode}}</td>
+                            <td>{{$mp->nama}}</td>
                             </tr>
                            
                         </tbody>
@@ -103,7 +135,11 @@
                     </div>
                 </div>
             </div>
-            @endforeach
+
+            </form>
+        </div>
+    </div>
+                @endforeach
 
         </div>
  

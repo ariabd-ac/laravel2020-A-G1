@@ -1,14 +1,14 @@
-<div class="modal fade" id="tambahModal" tabindex="-1" data-backdrop="static"   role="dialog" aria-labelledby="tambahData" aria-hidden="true">
+<div class="modal fade" id="tambahModal" data-backdrop="static"   role="dialog" aria-labelledby="tambahData" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header bg-primary">
-          <h5 class="modal-title text-white" id="tambahData">Tambah Data</h5>
+          <h5 class="modal-title text-white" id="tambah Data">Tambah Data</h5>
           <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body">
-          <form id="tambahForm">
+          <form id="tambahForm"action="" method="post" enctype="multipart/form-data">
             {{ csrf_field() }}
               <div class="form-group">
                 <label for="name" class="col-form-label">Name:</label>
@@ -64,6 +64,23 @@
                   </select>
                   <small class="errorJurusan text-danger hidden"></small>
               </div>
+              <div class="form-group">
+                <label for="pdf" class="col-form-label">SK:</label> <br/>
+                <input type="file" id="pdf" name="pdf" />
+                <small class="errorPdf text-danger hidden"></small>
+              </div>
+              <div class="form-group">
+                <label for="gambar" class="col-form-label">Upload Foto:</label> <br/>
+                <input type="file" id="gambar" name="gambar" />
+                <small class="errorGambar text-danger hidden"></small>
+              </div>
+              <div class="form-group">
+                <div class="row">
+                  <div class="col s6">
+                      <img src="http://placehold.it/100x100" class="showgambar" style="max-width:200px;max-height:200px;float:left;" />
+                  </div>
+                </div>
+              </div>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -89,27 +106,27 @@
             <input type="hidden" id="edit_id" name="id">
               <div class="form-group">
                 <label for="name" class="col-form-label">Name:</label>
-                <input type="text" class="form-control" name="nama" required>
+                <input type="text" class="form-control" name="nama" id="edit_nama">
                 <small class="edit_errorNama text-danger hidden"></small>
               </div>
               <div class="form-group">
                 <label for="name" class="col-form-label">Nomer Induk Siswa:</label>
-                <input type="number" class="form-control" name="nis" required>
+                <input type="number" class="form-control" name="nis" id="edit_nis">
                 <small class="edit_errorNis text-danger hidden"></small>
               </div>
                  <div class="form-group">
                 <label for="mdate" class="col-form-label">Tanggal lahir:</label>
-                <input type="date" class="form-control" name="ttl" id="mdate" data-dtp="dtp_PJfPo" placeholder="2017-06-04">
+                <input type="date" class="form-control" name="ttl" id="mdate" data-dtp="dtp_PJfPo" placeholder="2017-06-04" id="edit_ttl">
                 <small class="edit_errorTtl text-danger hidden"></small>
               </div>
               <div class="form-group">
                   <label for="country" class="col-form-label">Alamat:</label>
-                  <input type="text" class="form-control" name="alamat" required>
+                  <input type="text" class="form-control" name="alamat" id="edit_alamat">
                   <small class="edit_errorAlamat text-danger hidden"></small>
               </div>
               <div class="form-group">
                   <label for="country" class="col-form-label">Jenis Kelamin:</label>
-                  <select class="form-control" name="jk">
+                  <select class="form-control" name="jk" id="edit_jk">
                     <option value="">Pilih Jenis Kelamin</option>
                     <option value="L">Laki-Laki</option>
                     <option value="P">Perempuan</option>
@@ -118,12 +135,12 @@
               </div>
               <div class="form-group">
                   <label for="country" class="col-form-label">No Telfon:</label>
-                  <input type="text" class="form-control" name="phone" required>
+                  <input type="text" class="form-control" name="phone" id="edit_phone">
                   <small class="edit_errorPhone text-danger hidden"></small>
               </div>
                 <div class="form-group">
                   <label for="country" class="col-form-label">Kelas: </label>
-                  <select class="form-control" name="kelas">
+                  <select class="form-control" name="kelas" id="edit_kelas">
                     <option value="">Pilih Kelas</option>
                     <option value="10">10</option>
                     <option value="11">11</option>
@@ -133,13 +150,37 @@
               </div>
                <div class="form-group">
                   <label for="country" class="col-form-label">Jurusan: </label>
-                  <select class="form-control" name="jurusan">
+                  <select class="form-control" name="jurusan" id="edit_jurusan">
                     <option value="">Pilih Kelas</option>
                     <option value="IPA">IPA</option>
                     <option value="IPS">IPS</option>
                     <option value="Bahasa">Bahasa</option>
                   </select>
                   <small class="edit_errorJurusan text-danger hidden"></small>
+              </div>
+              <div class="form-group">
+                <label for="pdf" class="col-form-label">SK <small class="text-muted">kosongkan jika tidak ingin mengganti</small>:</label> <br/>
+                <input type="file" id="edit_pdf" name="pdf" />
+                <small class="edit_errorPdf text-danger hidden"></small>
+              </div>
+              <div class="form-group">
+                <div class="row">
+                  <div class="col s6">
+                      <a href="" class="btn btn-success btn-sm btn-rounded" id="edit_showpdf" target="_blank">PDF Link</a>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="gambar" class="col-form-label">Upload Gambar<small class="text-muted">kosongkan jika tidak ingin mengganti</small>:</label> <br/>
+                <input type="file" id="edit_gambar" name="gambar" />
+                <small class="edit_errorGambar text-danger hidden"></small>
+              </div>
+              <div class="form-group">
+                <div class="row">
+                  <div class="col s6">
+                      <img src="http://placehold.it/100x100" class="showgambar" id="edit_showgambar" style="max-width:200px;max-height:200px;float:left;" />
+                  </div>
+                </div>
               </div>
         </div>
         <div class="modal-footer">
@@ -200,6 +241,22 @@
         {data: 'DT_RowIndex', name: 'DT_RowIndex'},
         {data: 'nama', name: 'nama'},
         {data: 'nis', name: 'nis'},
+        {data: 'pdf', name: 'pdf', 
+              render: function( data, type, full, meta ) {
+                        if(data == null){
+                          return '<small class="text-muted">Belum upload</small>';
+                        }else{
+                          return "<a class='btn btn-rounded btn-secondary btn-sm' href=\"/storage/uploads/students/pdf/" + data + "\" target='_blank'>pdf</a>"; 
+                        }
+                      }},
+        {data: 'gambar', name: 'gambar', 
+              render: function( data, type, full, meta ) {
+                        if(data == null){
+                          return '<small class="text-muted">Belum upload</small>';
+                        }else{
+                          return "<img src=\"/storage/uploads/students/photos/" + data + "\" width=\"50\" height=\"50\"/>"; 
+                        }
+                      }},
         {data: 'ttl', name: 'ttl'},
         {data: 'alamat', name: 'alamat'},
         {data: 'jk', name: 'jk'},
@@ -210,6 +267,13 @@
     ]
     })
     ;
+
+    $('.tambahModal').click(function(){
+      $('.showgambar').attr('src', 'http://placehold.it/100x100');
+      $('#storeBtn').html('Tambah');
+      $('#tambahForm').trigger("reset");
+    });
+
 
      // Save Button in modal dialog
      $('#storeBtn').click(function (e) {
@@ -223,13 +287,17 @@
         $('.errorPhone').hide();
         $('.errorKelas').hide();
         $('.errorJurusan').hide();
+        $('.errorPdf').hide();
+        $('.errorGambar').hide();
         $(this).html('Sending..');
 
         $.ajax({
-          data: frm.serialize(),
+          data: new FormData($("#tambahForm")[0]),
+            dataType : 'json',
+            processData: false,
+            contentType: false,
           url: "{{ route('siswa.store') }}",
-          type: "POST",
-          dataType: 'json',
+          method: "POST",
           success: function (data) {
             if (data.errors) {
                 if (data.errors.nama) {
@@ -264,6 +332,14 @@
                   $('.errorJurusan').show();
                   $('.errorJurusan').text(data.errors.jurusan);
                 }
+                if (data.errors.pdf) {
+                  $('.errorPdf').show();
+                  $('.errorPdf').text(data.errors.pdf);
+                }
+                if (data.errors.gambar) {
+                  $('.errorGambar').show();
+                  $('.errorGambar').text(data.errors.gambar);
+                }
            }else {
               $('#tambahModal').modal('hide');
               frm.trigger("reset");
@@ -297,6 +373,8 @@
                 $('#edit_phone').val(data.phone);
                 $('#edit_kelas').val(data.kelas);
                 $('#edit_jurusan').val(data.jurusan);
+                $('#edit_showpdf').attr('href', 'storage/uploads/students/pdf/'+data.pdf);
+                $('#edit_showgambar').attr('src', 'storage/uploads/students/photos/'+data.gambar);
                 $('.errorNama').hide();
                 $('.errorNis').hide();
                 $('.errorTtl').hide();
@@ -322,15 +400,20 @@
         $('.errorPhone').hide();
         $('.errorKelas').hide();
         $('.errorJurusan').hide();
+        $('.errorPdf').hide();
+        $('.edit_errorGambar').hide();
         var url = "/siswa/"+$('#edit_id').val();
+        var formdata = new FormData($("#editForm")[0]);
+        formdata.append('_method', 'PUT');
         console.log(url);
-        var frm = $('#editForm');
 
         $.ajax({
-            data : frm.serialize(),
-            type :'PUT',
+            method : 'POST',
             url : url,
+            data : formdata,
             dataType : 'json',
+            processData: false,
+            contentType: false,
             success:function(data){
               if (data.errors) {
                 if (data.errors.nama) {
@@ -366,6 +449,14 @@
                 if (data.errors.jurusan) {
                   $('.errorJurusan').show();
                   $('.errorJurusan').text(data.errors.jurusan);
+                }
+                if (data.errors.pdf) {
+                  $('.edit_errorPdf').show();
+                  $('.edit_errorPdf').text(data.errors.pdf);
+                }
+                if (data.errors.gambar){
+                  $('.edit_errorGambar').show();
+                  $('.edit_errorGambar').text(data.errors.gambar);
                 }
 
               }else {
@@ -405,7 +496,7 @@
                 data : { method : '_DELETE' , submit : true},
                 success:function(data){
                     if (data == 'Success') {
-                      swal("Deleted!", "Category has been deleted", "success");
+                      swal("Deleted!", "Siswa berhasil di hapus", "success");
                       table.ajax.reload(null,false);
                     }
                 }
@@ -413,6 +504,24 @@
           }else { swal.close(); }
         });
     });
+
+      // dileng gmbr
+      function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $('.showgambar').attr('src', e.target.result);
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+    $("#edit_gambar").change(function () {
+        readURL(this);
+    });
+    $("#gambar").change(function () {
+        readURL(this);
+    });
+    
   });
   
 </script>

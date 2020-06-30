@@ -1,4 +1,4 @@
-@extends('layout.app')
+ @extends('layout.app')
 @section('title', 'Data Siswa')
 @section('content')
     
@@ -30,6 +30,8 @@
                             <th>Nama</th>
 
                             <th>Nis</th>
+                            
+                            <th>Img</th>
                             
                             <th>TTL </th>
 
