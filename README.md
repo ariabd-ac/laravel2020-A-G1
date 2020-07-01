@@ -22,7 +22,7 @@
 
 1. Migrasi & seed
 2. Verfikasi, change, forgot pswd
-3. File Storage -> Guru full, Walim create saja , ~~Student~~
+3. File Storage -> Guru full, Walim create saja , Student
 4. Socialite. -> Github
 
 # Verfikasi email
