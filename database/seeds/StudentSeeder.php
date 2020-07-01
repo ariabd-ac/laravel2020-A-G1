@@ -32,6 +32,8 @@ class StudentSeeder extends Seeder
                 'phone' => $faker->phoneNumber,
                 'kelas' => $kelas,
                 'jurusan' => $faker->randomElement($jurusan),
+                'pdf' => 'contoh.pdf',
+                'gambar' => 'avatar.png',
                 'created_at' => now(),
                 'updated_at' => now()
             ]);

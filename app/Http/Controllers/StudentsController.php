@@ -15,10 +15,11 @@ class StudentsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    // public function admin(){
-    //     return \view ('layout.app');
-    // }
-    // public function index()
+
+    public function admin(){
+        return \view ('layout.app');
+    }
+
     public function index(Request $request)
 
     {
@@ -76,7 +77,7 @@ class StudentsController extends Controller
             return response()->json(['errors' => $validator->getMessageBag()->toArray()]);
         }else {
 
-            if($request-hasFile('pdf')){
+            if($request->hasFile('pdf')){
                 // ada file yang di upload
                 $filenameWithExt = $request->file('pdf')->getClientOriginalName();
                 $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);

@@ -31,6 +31,8 @@
 
                             <th>Nis</th>
                             
+                            <th>SK Siswa</th>
+                            
                             <th>Img</th>
                             
                             <th>TTL </th>
