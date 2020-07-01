@@ -118,42 +118,26 @@ class StudentsController extends Controller
             $students->save();
             return response()->json(['success' => true]);
         }
-        //
-        // $students = Student::create([
-        //     'nama' => $request->nama,
-        //     'nis' => $request->nis,
-        //     'ttl' => $request->ttl,
-        //     'alamat' => $request->alamat,
-        //     'jk' => $request->jk,
-        //     'phone' => $request->phone,
-        //     'kelas' => $request->kelas,
-        //     'jurusan' => $request->jurusan
-        // ]);
-
-        // return redirect()->route('siswa.index');
+        
     }
 
     /**
      * Display the specified resource.
      *
-    //  * @param  \App\Student  $student
      * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
         //
-        // $students = Student::where('id', $id)->get(); // Mengambil satu penerima.
         $data = Student::where('id', $id)->get();
         return view('student.siswa-detail', compact('data'));
 
-        // return view('student.siswa-detail', compact('students'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-    //  * @param  \App\Student  $student
      * @param int $id
      * @return \Illuminate\Http\Response
      */
@@ -169,25 +153,12 @@ class StudentsController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-    //  * @param  \App\Student  $student
      * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
         //
-
-        // Student::where('id', $id)->update([
-        //     'nama' => $request->nama,
-        //     'nis' => $request->nis,
-        //     'ttl' => $request->ttl,
-        //     'alamat' => $request->alamat,
-        //     'jk' => $request->jk,
-        //     'phone' => $request->phone,
-        //     'kelas' => $request->kelas,
-        //     'jurusan' => $request->jurusan
-        // ]);
-        // return redirect()->route('siswa.index')->with('message', 'Data anda telah diupdate!');
 
         $validator = Validator::make($request->all(), [
             'nama' => 'required',
@@ -237,7 +208,7 @@ class StudentsController extends Controller
                 if($request->hasFile('gambar')){
                     // ada file yang di upload
                     $filenameWithExt = $request->file('gambar')->getClientOriginalName();
-                    $filename = pathinfo($filenameSimpanPdf, PATHINFO_FILENAME);
+                    $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
                     $extension = $request->file('gambar')->getClientOriginalExtension();
                     $filenameSimpan = $filename.'_'.time().'.'.$extension;
 
@@ -261,7 +232,6 @@ class StudentsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-    //  * @param  \App\Student  $student
      * @param int $id
      * @return \Illuminate\Http\Response
      */
